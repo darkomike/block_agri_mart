@@ -1,4 +1,4 @@
-import 'package:block_agri_mart/theme/color_constant.dart';
+import 'package:block_agri_mart/presentation/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -21,7 +21,6 @@ class AppTheme {
     ),
     headline3: TextStyle(
       fontSize: 21.0,
-      fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
     headline6: TextStyle(
@@ -49,7 +48,7 @@ class AppTheme {
     ),
     headline3: TextStyle(
       fontSize: 16.0,
-      fontWeight: FontWeight.w600,
+      
       color: Colors.white,
     ),
     headline6: TextStyle(
@@ -65,7 +64,7 @@ class AppTheme {
     return ThemeData(
       backgroundColor: Colors.white,
       scaffoldBackgroundColor: Colors.green[100],
-      fontFamily: 'Quicksand',
+      fontFamily: 'Poppins',
       textTheme: lightTextTheme,
       
       elevatedButtonTheme: ElevatedButtonThemeData(
@@ -92,7 +91,7 @@ class AppTheme {
       ),
       backgroundColor: ColorConstants.backgroundColorD,
       scaffoldBackgroundColor: ColorConstants.backgroundColorD,
-      fontFamily: 'Quicksand',
+      fontFamily: 'Poppins',
       
       textTheme: darkTextTheme, 
     );

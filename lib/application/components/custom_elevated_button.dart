@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
-  const CustomButton(
+class CustomElevatedButton extends StatelessWidget {
+  const CustomElevatedButton(
       {Key? key,
       required this.title,
       required this.height,
@@ -9,14 +9,14 @@ class CustomButton extends StatelessWidget {
       this.buttonBackgroundColor, this.titleStyle,
       this.borderRadius,
       this.elevation,
-      required this.width,
+       this.width,
       this.onHover,
       this.onPressed})
       : super(key: key);
 
   final String title;
   final double height;
-  final double width;
+  final double? width;
   final double? elevation;
   final double? borderRadius;
   final Color? buttonOutlineColor;
@@ -31,15 +31,17 @@ class CustomButton extends StatelessWidget {
     return SizedBox(
       height: height,
       width: width,
-      child: ElevatedButton(
+      child: ElevatedButton( 
           onHover: onHover,
           style: ButtonStyle(
               elevation: MaterialStateProperty.all(elevation ?? 2),
               side: MaterialStateProperty.all(
                 BorderSide(color: buttonOutlineColor ?? Colors.green.shade100),
-              ),
+              ), 
               backgroundColor: MaterialStateProperty.all<Color>(
                   buttonBackgroundColor ?? Theme.of(context).backgroundColor),
+                  overlayColor: MaterialStateProperty.all<Color>(
+                  buttonBackgroundColor ?? Colors.red.shade600),
               shape: MaterialStateProperty.all(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(borderRadius ?? 10)))),
           onPressed: onPressed,
