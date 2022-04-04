@@ -1,8 +1,10 @@
 import 'package:block_agri_mart/application/constants/screen_constants.dart';
+import 'package:block_agri_mart/application/state/app.dart';
 import 'package:block_agri_mart/presentation/pages/pages.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import '../../application/components/components.dart';
 
 class AuthPage extends StatefulWidget {
@@ -158,6 +160,7 @@ class _AuthPageState extends State<AuthPage> {
                                                             GoRouter.of(context)
                                                                 .goNamed(
                                                                     "home");
+                                                            Provider.of<AppStateManager>(context, listen:false).setIsLoggedIn(true);
                                                           },
                                                         ),
                                                       ),
