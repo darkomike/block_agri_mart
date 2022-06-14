@@ -31,7 +31,10 @@ dependencies:
     sdk: flutter
   provider: ^6.0.2
   lottie: 
-  go_router: 
+  shared_preferences: 
+  go_router:
+  web3dart:
+  flutter_svg: 
 
 
 

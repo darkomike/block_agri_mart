@@ -1,6 +1,7 @@
 import 'package:block_agri_mart/application/components/custom_list_tile.dart';
 import 'package:block_agri_mart/application/constants/assets_constant.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as developer;
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -14,9 +15,27 @@ class _ProfilePageState extends State<ProfilePage> {
 
   late PageController _pageController;
 
+  late ScrollController _mainScrollController;
+  late ScrollController _tabViewScrollController;
+
   @override
   void initState() {
     _pageController = PageController(keepPage: true, initialPage: 0);
+    _mainScrollController = ScrollController()
+      ..addListener(() {
+        developer.log(
+          "Main View Offset ${_mainScrollController.offset}",
+        );
+      });
+    _tabViewScrollController = ScrollController()
+      ..addListener(() {
+        developer.log(
+          "Tab View Position ${_tabViewScrollController.position}",
+        );
+
+        _mainScrollController.animateTo(_tabViewScrollController.offset,
+            duration: const Duration(seconds: 2), curve: Curves.ease);
+      });
     super.initState();
   }
 
@@ -34,16 +53,15 @@ class _ProfilePageState extends State<ProfilePage> {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(10), topRight: Radius.circular(10))),
         child: Scaffold(
-        backgroundColor: Colors.white,
+          floatingActionButton: FloatingActionButton(onPressed: () {}),
+          backgroundColor: Colors.white,
           body: LayoutBuilder(builder: (context, constraints) {
             return Container(
-                      color: Colors.white,
-
+              color: Colors.white,
               alignment: Alignment.center,
               child: ListView(
+                controller: _mainScrollController,
                 key: UniqueKey(),
-                physics: const ClampingScrollPhysics(),
-                shrinkWrap: true,
                 children: [
                   Container(
                     height: 220,
@@ -58,7 +76,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               color: Colors.red,
                               image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: AssetImage(AssetsConstant.profile2))),
+                                  image: AssetImage(AssetsConstant.bgPic))),
                         ),
                         Positioned(
                           right: constraints.maxWidth / 2.8,
@@ -79,7 +97,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 child: CircleAvatar(
                                     maxRadius: 100,
                                     backgroundImage:
-                                        AssetImage(AssetsConstant.profile1)),
+                                        AssetImage(AssetsConstant.profilePic)),
                               ),
                             ),
                           ),
@@ -88,19 +106,23 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   const ProfileInfo(),
-                  const CustomTabView(),
+                  const CustomTabView(
+                    isSelected: 2,
+                  ),
                   SizedBox(
-                    height: constraints.maxHeight /1.2,
+                    height: constraints.maxHeight / 1.2,
                     child: PageView(
-                      physics: const ClampingScrollPhysics(), 
                       controller: _pageController,
-                      // key: UniqueKey(),
                       children: [
                         Container(
                             margin: const EdgeInsets.symmetric(
                                 horizontal: 5, vertical: 5),
                             child: ListView.builder(
+                                controller: _tabViewScrollController,
                                 itemCount: 10,
+                                key: UniqueKey(),
+                                shrinkWrap: true,
+                                physics: const ScrollPhysics(),
                                 itemBuilder: (context, index) {
                                   return const CustomListTile(title: 'Assets');
                                 }))
@@ -160,41 +182,43 @@ class ProfileInfo extends StatelessWidget {
 class CustomTabView extends StatelessWidget {
   const CustomTabView({
     Key? key,
+    required this.isSelected,
   }) : super(key: key);
+
+  final int isSelected;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10),
       height: 90,
-      child: SingleChildScrollView(
-         scrollDirection: Axis.horizontal, physics: const ClampingScrollPhysics(),
-  
-        key: UniqueKey(),
-       
-        child: Row(
-         
-          children: const [
-            CustomTabBar(
-              tabName: "My Assets",
-              icon: Icon(Icons.favorite),
-              width: 150,
-              counter: 10,
-            ),
-            CustomTabBar(
-              tabName: "Created",
-              icon: Icon(Icons.favorite),
-              width: 150,
-              counter: 45,
-            ),
-            CustomTabBar(
-              tabName: "Favorites",
-              icon: Icon(Icons.favorite),
-              width: 150,
-              counter: 20,
-            ),
-          ],
-        ),
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        physics: const ScrollPhysics(),
+        children: [
+          CustomTabBar(
+            tabName: "My Assets",
+            icon: const Icon(Icons.star),
+            width: 150,
+            counter: 10,
+            isSelected: isSelected == 1 ? Colors.blue : Colors.transparent,
+          ),
+          CustomTabBar(
+            tabName: "Created",
+            icon: const Icon(Icons.add_box),
+            width: 150,
+            counter: 45,
+            isSelected: isSelected == 2 ? Colors.blue : Colors.transparent,
+          ),
+          CustomTabBar(
+            tabName: "Favorites",
+            icon: Icon(Icons.favorite),
+            isSelected: isSelected == 3 ? Colors.blue : Colors.transparent,
+            width: 150,
+            counter: 20,
+          ),
+        ],
       ),
     );
   }
@@ -207,6 +231,7 @@ class CustomTabBar extends StatelessWidget {
       this.onTap,
       required this.icon,
       required this.width,
+      required this.isSelected,
       required this.counter})
       : super(key: key);
 
@@ -215,6 +240,7 @@ class CustomTabBar extends StatelessWidget {
   final Widget icon;
   final int counter;
   final double width;
+  final Color isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -248,11 +274,12 @@ class CustomTabBar extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
+            AnimatedContainer(
               alignment: Alignment.center,
               height: 2,
+              duration: const Duration(milliseconds: 900),
               width: 150,
-              color: Colors.blue,
+              color: isSelected,
             )
           ],
         ),

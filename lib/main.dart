@@ -1,11 +1,24 @@
 import 'package:block_agri_mart/application/application.dart';
 import 'package:block_agri_mart/application/state/app.dart';
+import 'package:block_agri_mart/data/cache/cache.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'presentation/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+late SharedPreferences prefs;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  prefs =  await SharedPreferences.getInstance();
+
+
+  prefs.setBool("loggedIn", prefs.getBool('loggedIn') ?? false);
+  prefs.setString("userType", prefs.getString('userType') ?? "Buyer");
+
   runApp(const MyApp());
+
 }
 
 class MyApp extends StatelessWidget {
@@ -19,10 +32,10 @@ class MyApp extends StatelessWidget {
       ],
       child: Consumer<AppStateManager>(builder: ((context, appState, child) {
         ThemeData theme;
-        if (appState.getIsDarkModeOn) {
+        if (appState.darkModeOn) {
           theme = AppTheme.dark();
         } else {
-         theme = AppTheme.light();
+          theme = AppTheme.light();
         }
         return MaterialApp.router(
           routeInformationParser: appRouter.routeInformationParser,
@@ -30,7 +43,7 @@ class MyApp extends StatelessWidget {
           title: 'AgriMart',
           debugShowCheckedModeBanner: false,
           theme: theme,
-          
+
           // darkTheme: AppTheme.dark(),
         );
       })),

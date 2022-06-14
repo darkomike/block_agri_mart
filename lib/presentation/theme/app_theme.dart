@@ -1,8 +1,8 @@
 import 'package:block_agri_mart/presentation/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AppTheme {
-
   static TextTheme lightTextTheme = const TextTheme(
     bodyText1: TextStyle(
       fontSize: 14.0,
@@ -48,7 +48,6 @@ class AppTheme {
     ),
     headline3: TextStyle(
       fontSize: 16.0,
-      
       color: Colors.white,
     ),
     headline6: TextStyle(
@@ -58,33 +57,36 @@ class AppTheme {
     ),
   );
 
-
-  // LIGHT THEME 
+  // LIGHT THEME
   static ThemeData light() {
     return ThemeData(
       backgroundColor: Colors.white,
-      scaffoldBackgroundColor: Colors.green[100],
+      scaffoldBackgroundColor: ColorConstants.scaffoldBackgroundColorL,
       fontFamily: 'Poppins',
+      iconTheme: const IconThemeData(
+        size: 20,
+      ),
       textTheme: lightTextTheme,
-      
+      appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(color: Colors.black, fontSize: 20),
+          iconTheme: IconThemeData(color: Colors.black),
+          elevation: 1),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-              
-              side: MaterialStateProperty.all(
-                BorderSide(color: Colors.green.shade100),
-              ),
-              backgroundColor: MaterialStateProperty.all<Color>(
-                  Colors.green.shade600),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular( 10)))),
-         
-
+            side: MaterialStateProperty.all(
+              BorderSide(color: Colors.green.shade100),
+            ),
+            backgroundColor:
+                MaterialStateProperty.all<Color>(Colors.green.shade600),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)))),
       ),
     );
   }
-  
-  // DARK THEME 
-   static ThemeData dark() {
+
+  // DARK THEME
+  static ThemeData dark() {
     return ThemeData(
       appBarTheme: AppBarTheme(
         backgroundColor: ColorConstants.backgroundColorD,
@@ -92,8 +94,7 @@ class AppTheme {
       backgroundColor: ColorConstants.backgroundColorD,
       scaffoldBackgroundColor: ColorConstants.backgroundColorD,
       fontFamily: 'Poppins',
-      
-      textTheme: darkTextTheme, 
+      textTheme: darkTextTheme,
     );
   }
 }

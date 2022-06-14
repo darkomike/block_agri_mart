@@ -47,7 +47,7 @@ class _LandscapeState extends State<Landscape> {
                   SwitchListTile(
                       hoverColor: Colors.teal.shade500,
                       title: Text(
-                        "Dark Mode ${appStateManager.getIsDarkModeOn ? "ON" : "OFF"}",
+                        "Dark Mode ${appStateManager.darkModeOn ? "ON" : "OFF"}",
                         style: Theme.of(context)
                             .textTheme
                             .headline3!
@@ -55,7 +55,7 @@ class _LandscapeState extends State<Landscape> {
                       ),
                       value:
                           Provider.of<AppStateManager>(context, listen: false)
-                              .getIsDarkModeOn,
+                              .darkModeOn,
                       onChanged: (bool value) {
                         Provider.of<AppStateManager>(context, listen: false)
                             .setIsDarkModeOn(value);

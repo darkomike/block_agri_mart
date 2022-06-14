@@ -32,7 +32,7 @@ class Page404 extends StatelessWidget {
                     
                     "Oops Page Not Found",
                     style:
-                        Theme.of(context).textTheme.headline1!.copyWith(fontSize: 50),
+                        Theme.of(context).textTheme.headline1!.copyWith(fontSize: 20),
                 )),
                  ),
           ],

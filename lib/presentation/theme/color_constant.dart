@@ -4,7 +4,8 @@ class ColorConstants {
   // LIGHT THEME CONSTANT COLORS
 
   // scaffold
-  static Color scaffoldBackgroundColorL = Colors.green.shade100;
+  // static Color scaffoldBackgroundColorL = Color.fromARGB(255, 234, 245, 234);
+  static Color scaffoldBackgroundColorL = Colors.white;
 
   // buttons
   static Color buttonBackgroundColorL = Colors.green.shade500;
