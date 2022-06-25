@@ -1,4 +1,4 @@
 export 'app.dart';
-export 'auth.dart';
-export 'home.dart';
-export 'profile.dart';
+export '../../domain/auth/routes/auth.dart';
+export '../../domain/home/routes/home.dart';
+export '../../domain/profile/routes/profile.dart';

@@ -1,1 +1,1 @@
-export 'screen_constants.dart';
+export 'assets_constant.dart';

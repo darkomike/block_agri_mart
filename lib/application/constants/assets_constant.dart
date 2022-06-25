@@ -12,7 +12,7 @@ class AssetsConstant {
   static String homepageLottie = 'assets/lottie/homepage.json';
   static String cryptoBlockchainLottie = 'assets/lottie/crypto-blockchain.json';
   static String twoFactorAuthenticationLottie = 'assets/lottie/crypto-blockchain.json';
-  static String networkDataLottie = 'assets/lottie/n'; 
+  static String networkDataLottie = 'assets/lottie/network-data.json'; 
 
 
 }
