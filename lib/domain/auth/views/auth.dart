@@ -105,7 +105,7 @@ class _AuthScreenState extends State<AuthScreen>
                                 child: StatefulBuilder(
                                   builder: (context, setState) {
                                     return Container(
-                                      height: 250,
+                                      height: 290,
                                       decoration: BoxDecoration(
                                           color: Colors.white.withOpacity(0.8),
                                           borderRadius:
@@ -142,7 +142,9 @@ class _AuthScreenState extends State<AuthScreen>
                                                             .clear();
                                                       },
                                                       icon: const Icon(
-                                                          Icons.clear))),
+                                                        Icons.clear,
+                                                        color: Colors.black,
+                                                      ))),
                                             ),
                                           ),
                                           Container(
@@ -204,15 +206,19 @@ class _AuthScreenState extends State<AuthScreen>
                                               ],
                                             ),
                                           ),
-
-                                          Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 10, vertical: 5),
-                                            child: TextButton(onPressed: (){}, child: Row(children: const [
-                                              Text("Connect"), Icon(Icons.connect_without_contact_sharp)
-                                            ],)),
-                                          ),
-
+                                          Center(
+                                              child: CustomElevatedButton(
+                                            title: 'Connect',
+                                            buttonBackgroundColor:
+                                                Colors.blue.shade400,
+                                            height: 40,
+                                            onPressed: () {
+                                              Provider.of<AppStateManager>(
+                                                      context, listen: false)
+                                                  .setIsLoggedIn(true);
+                                              context.go('/');
+                                            },
+                                          )),
                                           Center(
                                             child: TextButton(
                                               onPressed: () {

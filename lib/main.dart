@@ -1,7 +1,5 @@
 import 'package:block_agri_mart/application/application.dart';
-import 'package:block_agri_mart/application/state/app.dart';
-import 'package:block_agri_mart/data/cache/cache.dart';
-import 'package:flutter/widgets.dart';
+import 'package:block_agri_mart/domain/domain.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'presentation/presentation.dart';
@@ -27,6 +25,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => appStateManager),
+        ChangeNotifierProvider(create: (context) => homeStateManager),
       ],
       child: Consumer<AppStateManager>(builder: ((context, appState, child) {
         ThemeData theme;

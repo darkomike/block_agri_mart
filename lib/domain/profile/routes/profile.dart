@@ -6,4 +6,4 @@ import '../views/profile.dart';
 final profileRouter = GoRoute(
     name: 'profile',
     path: 'profile',
-    builder: (context, state) => const ProfilePage());
+    builder: (context, state) => const ProfileScreen());

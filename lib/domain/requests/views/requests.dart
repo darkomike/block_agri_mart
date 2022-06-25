@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class RequestsScreen extends StatefulWidget {
+  const RequestsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<RequestsScreen> createState() => _RequestsScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _RequestsScreenState extends State<RequestsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Text(
-          "Orders",
+          "Requests",
           style: Theme.of(context).textTheme.headline3,
         ),
       ),

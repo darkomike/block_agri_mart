@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+class ProductsScreen extends StatefulWidget {
+  const ProductsScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProductsScreen> createState() => _ProductsScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProductsScreenState extends State<ProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Text(
-          "Orders",
+          "Products",
           style: Theme.of(context).textTheme.headline3,
         ),
       ),

@@ -6,7 +6,7 @@ final appRouter = GoRouter(
     initialLocation: '/auth',
     refreshListenable: appStateManager,
     urlPathStrategy: UrlPathStrategy.path,
-    debugLogDiagnostics: false,
+    debugLogDiagnostics: true,
     routes: [homeRouter, authRouter],
     redirect: (state) {
       // if the user is not logged in, they need to login
